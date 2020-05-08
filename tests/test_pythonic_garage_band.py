@@ -1,6 +1,6 @@
 import pytest
 from pythonic_garage_band import __version__
-from pythonic_garage_band.pythonic_garage_band import Band, Musician, Guitarist
+from pythonic_garage_band.pythonic_garage_band import Band, Musician, Guitarist, Bassist
 
 def test_version():
     assert __version__ == '0.1.0'
@@ -25,6 +25,16 @@ def test_guiterist():
     assert john.play_solo() == "Sympathy for the Devil"
     assert john.__str__() == "John Lennon plays Guitar"
     assert john.__repr__() == "Musician(John Lennon,Guitar)"
+
+def test_bassist():
+    paul = Bassist("Paul McCartney")
+    assert paul.name == "Paul McCartney"
+    assert paul.get_instrument() == "Bass"
+    assert paul.play_solo() == "Light My Fire"
+    assert paul.__str__() == "Paul McCartney plays Bass"
+    assert paul.__repr__() == "Musician(Paul McCartney,Bass)"
+
+
    
 
 
