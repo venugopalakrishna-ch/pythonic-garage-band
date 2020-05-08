@@ -59,6 +59,17 @@ class Bassist(Musician):
 
     def play_solo(self):
         return "Light My Fire"
+
+class Drummer(Musician):
+    def __init__(self,name):
+        super().__init__(name,"Drums")
+
+    def get_instrument(self):
+        return self.instrument
+
+    def play_solo(self):
+        return "Sharp Dressed Man"
+
     
 
 
