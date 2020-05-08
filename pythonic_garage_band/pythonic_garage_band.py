@@ -1,3 +1,4 @@
+from abc import ABC, abstractmethod
 
 class Band:
     count = 0
@@ -6,7 +7,7 @@ class Band:
         self.members = members   
         Band.count += 1          
 
-    def play_solo(self):    
+    def play_solos(self):    
         return "???????"
 
     def __str__(self):
@@ -17,6 +18,27 @@ class Band:
 
     @classmethod
     def to_list(cls):        
-        return f"The number of Bands created: {cls.count}"        
+        return f"The number of Bands created: {cls.count}"      
+
+
+class Musician(ABC):
+    def __init__(self,name,instrument):
+        self.name = name
+        self.instrument = instrument
+    
+    def __str__(self):
+        return "{} plays {}".format(self.name,self.instrument)
+
+    def __repr__(self):
+        return 'Musician({},{})'.format(self.name,self.instrument)
+
+    @abstractmethod
+    def get_instrument(self):
+        pass
+
+    @abstractmethod
+    def play_solo(self):
+        pass
+
 
     
