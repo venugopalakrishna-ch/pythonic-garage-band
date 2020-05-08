@@ -40,5 +40,16 @@ class Musician(ABC):
     def play_solo(self):
         pass
 
+class Guitarist(Musician):
+    def __init__(self,name):
+        super().__init__(name,"Guitar")
+
+    def get_instrument(self):
+        return self.instrument
+
+    def play_solo(self):
+        return "Sympathy for the Devil"
+    
+
 
     

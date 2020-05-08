@@ -1,11 +1,11 @@
 import pytest
 from pythonic_garage_band import __version__
-from pythonic_garage_band.pythonic_garage_band import Band, Musician
+from pythonic_garage_band.pythonic_garage_band import Band, Musician, Guitarist
 
 def test_version():
     assert __version__ == '0.1.0'
 
-def test_Band():
+def test_band():
     beatles = Band("The Beatles",["John Lennon","Paul McCartney","George Harrison"])
     assert beatles.name == "The Beatles"
     assert beatles.members == ["John Lennon","Paul McCartney","George Harrison"]
@@ -14,9 +14,17 @@ def test_Band():
     assert beatles.__repr__() == "Band(The Beatles,['John Lennon', 'Paul McCartney', 'George Harrison'])"
     assert beatles.to_list() == "The number of Bands created: 1"
 
-def test_Musician():
+def test_musician():
     with pytest.raises(TypeError):
         Musician("?","?")
+
+def test_guiterist():
+    john = Guitarist("John Lennon")
+    assert john.name == "John Lennon"
+    assert john.get_instrument() == "Guitar"
+    assert john.play_solo() == "Sympathy for the Devil"
+    assert john.__str__() == "John Lennon plays Guitar"
+    assert john.__repr__() == "Musician(John Lennon,Guitar)"
    
 
 
