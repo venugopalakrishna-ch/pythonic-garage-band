@@ -6,13 +6,13 @@ def test_version():
     assert __version__ == '0.1.0'
 
 def test_band():
-    beatles = Band("The Beatles",["John Lennon","Paul McCartney","George Harrison"])
+    beatles = Band("The Beatles",["John Lennon","Paul McCartney","George Harrison"],["Sympathy for the Devil","Light My Fire","Sharp Dressed Man"])
     assert beatles.name == "The Beatles"
-    assert beatles.members == ["John Lennon","Paul McCartney","George Harrison"]
-    assert beatles.play_solos() == "???????"
+    assert beatles.members == ["John Lennon","Paul McCartney","George Harrison"]               
     assert beatles.__str__() == "Band name is 'The Beatles'; and members of the Band Are: ['John Lennon', 'Paul McCartney', 'George Harrison']"
     assert beatles.__repr__() == "Band(The Beatles,['John Lennon', 'Paul McCartney', 'George Harrison'])"
     assert beatles.to_list() == "The number of Bands created: 1"
+    
 
 def test_musician():
     with pytest.raises(TypeError):
@@ -43,6 +43,17 @@ def test_drummer():
     assert siva.__repr__() == "Musician(Siva Mani,Drums)"
 
 
-   
+def test_some_band(some_band):
+    assert some_band.name == "The Beatles" 
+    assert some_band.to_list() == "The number of Bands created: 2" 
+    assert some_band.play_solos() == "John Lennon please play the solo: Sympathy for the Devil Paul McCartney please play the solo: Light My Fire Siva Mani please play the solo: Sharp Dressed Man"
+    class_args = some_band.create_from_data("pythonic_garage_band/assets/band_input.txt")
+    from_data  = Band(class_args[0],class_args[1],class_args[2])
+    assert from_data.name == "The Beatles"
+    assert from_data.to_list() == "The number of Bands created: 3" 
+    
 
-
+@pytest.fixture
+def some_band():
+    beatles = Band("The Beatles", [Guitarist("John Lennon"), Bassist("Paul McCartney"),Drummer("Siva Mani")],["Sympathy for the Devil","Light My Fire","Sharp Dressed Man"])
+    return beatles
